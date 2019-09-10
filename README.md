@@ -11,48 +11,49 @@ Django REST framework, PostgreSQL
 
 Create a virtualenv for the project (Python 3.6+). 
 
+Apply database settings in settings,py to establish connection with your databasse.
+
+Make migrations and migrate models to database.
+
 Then install requirements and run server.
 
 ```
 $ pip install -r requirements.txt
 $ python manage.py runserver
-
 ```
-
 After that visit `http://localhost:8000` to view the app.
 
 ## API endpoints
 
-`[GET] /advices` - shows 50 hits from newest to older ones
+`[GET] /advices/` - shows 50 advices.
 
-`[GET] /api/v1/hits/{title_url}` - shows one hit based on the title slug.
- 
- For example: 
-        `title: Some title` -> 
-        `title_url: some-title`
+`[GET] /advices/<int:pk>` - shows advice with specific id.
 
-`[POST] /api/v1/hits ` - creates a new hit-entry, artistId and title are required
+`[GET] /quiz_questions/` - shows quiz questions.
 
-`[PUT] /api/v1/hits/{title_url}` - updates a hit-entry, only artist_id and title can be updated
+`[GET] /users/` - shows list of users.
 
-`[DELETE] /api/v1/hits/{title_url}` - deletes selected hit
+`[GET] /users/<int:pk>/` - shows user with specific id.
 
-To populate datavase with fake songs and artists run fake_database.py
+`[GET] /forum_questions/` - shows forum questions.
 
-## Running tests
+`[GET] /forum_questions/<int:pk>/` - shows forum question with specific id.
 
-Create a virtualenv for the project (Python 3.6+). 
+`[GET] /forum_answers/` - shows forum answers.
 
-Install requirements with `pip install -r requirements.txt`
+`[GET] /forum_answers/<int:pk>/` - shows forum answer with specific id.
 
-Run tests with `pytest`
+## CRUD
 
-## Word of caution
+`[POST] /advices/ ` - creates a new advice-entry
 
-... or things to improve.
+`[PUT] /advices/<int:pk>` - updates a advice-entry
 
-1. Tests use the same database as the locally running service does.
+`[DELETE] /advices/<int:pk>` - deletes selected advice
 
-2. In docker, the database is a sqlite file inside the container. 
-Rebuilding the container drops all data.
+`[POST] /quiz_questions/ ` - creates a new quiz question-entry
+
+`[PUT] /quiz_questions/<int:pk>` - updates a quiz question-entry
+
+`[DELETE] /quiz_questions/<int:pk>` - deletes selected quiz question-entry
 
